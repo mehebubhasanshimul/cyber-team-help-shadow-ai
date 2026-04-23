@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER TEAM HELP AI | Shadow Joker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ff41; /* Classic Matrix/Hacker Green */
+            --bg-dark: #0a0b10;
+            --card-bg: #161b22;
+            --text-gray: #8b949e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 600px;
+            height: 90vh;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 255, 65, 0.1);
+            position: relative;
+        }
+
+        /* Header & Logo Section */
+        header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .logo-area img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Chat Window */
+        #chat-window {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            line-height: 1.5;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: #21262d;
+            color: #ffffff;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--primary-color);
+            color: #e6edf3;
+            border-bottom-left-radius: 2px;
+        }
+
+        .credit-tag {
+            display: block;
+            font-size: 0.7rem;
+            margin-top: 8px;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-align: right;
+            border-top: 1px solid rgba(0, 255, 65, 0.1);
+            padding-top: 4px;
+        }
+
+        /* Input Area */
+        .input-group {
+            padding: 20px;
+            background: #0d1117;
+            display: flex;
+            gap: 10px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        input {
+            flex: 1;
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--primary-color); }
+
+        button {
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            transition: 0.3s;
+        }
+
+        button:hover { background: #00cc33; box-shadow: 0 0 10px var(--primary-color); }
+
+        /* Footer Credit */
+        .footer-credit {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 10px;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .main-container { height: 100vh; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <div class="logo-area">
+                <img src="https://iili.io/fQKS0UN.md.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/60/00ff41/000000?text=SJ'">
+            </div>
+            <h1>CYBER TEAM HELP AI</h1>
+        </header>
+
+        <div id="chat-window">
+            <div class="message ai-message">
+                আসসালামু আলাইকুম! আমি CYBER TEAM HELP AI। আপনাকে কিভাবে সাহায্য করতে পারি?
+                <span class="credit-tag">Managed by SHADOW JOKER</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="user-input" placeholder="এখানে লিখুন..." onkeypress="if(event.key === 'Enter') sendMessage()">
+            <button onclick="sendMessage()">SEND</button>
+        </div>
+
+        <div class="footer-credit">
+            Developed & Maintained by <span style="color: var(--primary-color);">SHADOW JOKER</span>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatWindow = document.getElementById('chat-window');
+            const messageText = input.value.trim();
+
+            if (!messageText) return;
+
+            // User Message UI
+            appendMessage('user', messageText);
+            input.value = '';
+
+            // AI Loading state
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message ai-message';
+            loadingDiv.innerText = 'চিন্তা করছি...';
+            chatWindow.appendChild(loadingDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            try {
+                // Vercel Environment API Call
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: messageText })
+                });
+
+                const data = await response.json();
+                chatWindow.removeChild(loadingDiv);
+                
+                // Display AI Response
+                appendMessage('ai', data.reply || "দুঃখিত, আমি এখন উত্তর দিতে পারছি না।");
+            } catch (error) {
+                chatWindow.removeChild(loadingDiv);
+                appendMessage('ai', "সার্ভারের সাথে সংযোগ বিচ্ছিন্ন হয়েছে।");
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const chatWindow = document.getElementById('chat-window');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}-message`;
+            
+            if (sender === 'ai') {
+                msgDiv.innerHTML = `${text} <span class="credit-tag">Managed by SHADOW JOKER</span>`;
+            } else {
+                msgDiv.innerText = text;
+            }
+
+            chatWindow.appendChild(msgDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    </script>
+</body>
+</html>
